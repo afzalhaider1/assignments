@@ -1,0 +1,8 @@
+#server1,service,tomcat,start
+#server1,service,tomcat,stop
+#server1,service,daemon-reload
+#server2,service,tomcat,restart
+#server2,service,nginx,start
+#server2,service,nginx,stop
+#server2,service,daemon-reload
+server2,service,nginx,restart

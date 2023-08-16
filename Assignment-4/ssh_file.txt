@@ -1,0 +1,2 @@
+blueant: ssh -p 5522 amagi@203.99.136.76
+server3: ssh -p 2022 -i /home/afzal/.ssh/server3.pem ubuntu@192.168.46.34

@@ -1,0 +1,36 @@
+  sudo groupadd trainer
+  sudo groupadd vidayarthi
+  sudo useradd -m -G trainer sandeep
+  sudo useradd -m -G vidayarthi prakash
+  sudo chown sandeep:trainer /home/sandeep
+  sudo chown prakash:vidayarthi /home/prakash
+  sudo chmod 751 /home/sandeep
+  sudo chmod 751 /home/prakash
+  sudo mkdir /home/sandeep/team
+  sudo mkdir /home/sandeep/ninja
+  sudo mkdir /home/prakash/ninja
+  sudo mkdir /home/prakash/team
+  sudo chown sandeep:trainer /home/sandeep/team
+  sudo chown sandeep:trainer /home/sandeep/ninja
+  sudo chown prakash:vidayarthi /home/prakash/team
+  sudo chown prakash:vidayarthi /home/prakash/ninja
+  sudo chmod 770 /home/sandeep/team
+  sudo chmod 770 /home/prakash/team
+  sudo chmod 777 /home/sandeep/ninja
+  sudo chmod 777 /home/prakash/ninja
+  sudo chsh -s /bin/bash prakash
+  sudo chsh -s /bin/bash sandeep
+  sudo su - prakash
+  cd /home/sandeep/ninja
+  sudo su - sandeep
+  cd /home/prakash/ninja
+  sudo adduser pankaj
+  sudo groupadd ninjabatch22
+  sudo usermod -G ninjabatch22 pankaj
+  sudo chsh -s /bin/sh pankaj
+  sudo passwd pankaj
+  cat /etc/passwd
+  cat /etc/groupp
+  cat /etc/group
+  sudo userdel pankaj
+  sudo groupdel ninjabatch22 

@@ -1,0 +1,6 @@
+server1,user,modify,shell,/bin/bash/,test2
+server1,user,create,test3
+#server1,user,create,nitish 
+#server1,user,modify,group,devops,diwakar
+#server1,user,modify,shell,/bin/bash,nitish
+#server1,user,delete,neha
