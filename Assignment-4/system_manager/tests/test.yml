@@ -1,0 +1,6 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  roles:
+    - /home/afzal/ansible_assignment4/system_manager

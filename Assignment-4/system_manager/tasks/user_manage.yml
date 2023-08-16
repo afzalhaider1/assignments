@@ -1,0 +1,23 @@
+    - name: Adding user
+      user:
+        name: "{{ item.username }}"
+        password: "{{ item.password }}"
+      loop: "{{ users_to_add }}"
+      tags: [adduser]  
+
+    - name: Remove user
+      user:
+        name: "{{ item }}"
+        state: absent
+        remove: yes
+      loop: "{{ users_to_remove }}"
+      tags: [deluser]  
+
+    - name: Modify users
+      user:
+        name: "{{ item.username }}"
+        update_password: always
+        password: "{{ item.password | string | password_hash('sha512') }}"
+        state: present
+      loop: "{{ users_to_modify }}"
+      tags: [usermod]

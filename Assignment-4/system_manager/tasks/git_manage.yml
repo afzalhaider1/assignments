@@ -1,0 +1,7 @@
+- name: Git clone and update repository
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    update: yes
+  loop: "{{ git_repos }}"
+  tags: [git]

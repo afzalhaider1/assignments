@@ -1,0 +1,68 @@
+---
+    - name: Install Java on Ubuntu
+      apt:
+        name: openjdk-11-jdk
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+        
+    - name: Install Java on RedHat
+      yum:
+        name: java-11-openjdk
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "RedHat"     
+      
+    - name: Install required packages
+      package:
+        name: [wget, tar]
+        state: present
+        
+    - name: Check if Kafka is already installed
+      stat:
+        path: "{{ kafka_install_dir }}"
+      register: kafka_installed
+          
+    - name: Remove existing Kafka files
+      file:
+        path: "{{ kafka_install_dir }}/"
+        state: absent
+      when: kafka_installed.stat.exists  
+        
+    - name: Download Kafka
+      get_url:
+        url: "https://archive.apache.org/dist/kafka/{{ kafka_version }}/kafka_2.13-{{ kafka_version }}.tgz"
+        dest: "/tmp/kafka_2.13-{{ kafka_version }}.tgz" 
+
+    - name: Unzip Kafka
+      unarchive:
+        src: "/tmp/kafka_2.13-{{ kafka_version }}.tgz"
+        dest: "/home" 
+        mode: "0755"
+        remote_src: yes
+        
+    - name: Ensure Kafka install directory exists
+      file:
+        path: "{{ kafka_install_dir }}"
+        state: directory
+    
+    - name: Move Kafka directory
+      shell: mv /home/kafka_2.13-{{ kafka_version }}/* {{ kafka_install_dir }}
+      args:
+        warn: no
+    
+    - name: Create Zookeeper Systemd service unit
+      template:
+        src: zookeeper.service.j2
+        dest: "/etc/systemd/system/zookeeper.service"        
+        
+    - name: Create Kafka Systemd service unit
+      template:
+        src: kafka.service.j2
+        dest: "/etc/systemd/system/kafka.service"
+      notify:
+        - Reload Daemon
+        - Restart Zookeeper
+        - Restart Kafka
+        - Enable Kafka
+        - Enable Zookeeper

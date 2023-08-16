@@ -1,0 +1,59 @@
+---
+# vars file for system_manager
+users_to_add:
+      - username: afzal
+        password: 123
+      - username: ayush
+        password: 123
+      - username: shreya
+        password: 123
+      - username: diwakar
+        password: 123
+      - username: tausheef
+        password: 123
+        
+users_to_remove:
+      - tausheef
+      - diwakar
+      
+users_to_modify:
+      - username: afzal
+        password: 123456
+        
+app_to_install:
+      - nginx
+      - maven
+      - tomcat9
+      - tree
+      - default-jre
+      
+app_to_uninstall:
+      - tomcat9
+      - tree
+      
+git_repos:
+      - repo: https://github.com/opstree/spring3hibernate.git
+        dest: /home/ubuntu/git/spring3hibernate
+      - repo: https://github.com/afzalhaider1/teamB.git
+        dest: /home/ubuntu/git/afzal
+        
+folder_to_create:
+      - path: /home/ubuntu/dir1
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+      - path: /home/ubuntu/dir2
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+        
+file_to_create:
+      - path: /home/ubuntu/dir1/file1.txt
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+      - path: /home/ubuntu/dir2/file2.txt
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+        

@@ -1,0 +1,6 @@
+# roles/system_manager/tasks/main.yml
+---
+- include: software_install.yml
+- include: user_manage.yml
+- include: folder_and_file_manage.yml
+- include: git_manage.yml
