@@ -1,0 +1,64 @@
+---
+- name: SSH to Host with PEM Key and User
+  hosts: web
+
+  tasks:
+    - name: Create group ninja
+      group:
+        name: ninja
+        state: present
+      become: true
+    - name: Nitish added to ninja group
+      user:
+        name: nitish
+        group: ninja
+        state: present
+      become: true
+    - name: Create Home directory and give read and excute access to same team
+      file:
+        path: "/home/nitish"
+        state: directory
+        owner: nitish
+        group: ninja
+        mode: 0750
+      become: true
+    - name: Create team directory in home directory and same team members will have full access
+      file:
+        path: "/home/nitish/team"
+        state: directory
+        owner: nitish
+        group: ninja
+        mode: 0770
+      become: true
+    - name: Create team directory in home directory and all ninjas will have full access
+      file:
+        path: "/home/nitish/ninja"
+        state: directory
+        owner: nitish
+        group: ninja
+        mode: 0777
+      become: true
+    - name: Change user Shell
+      user:
+        name: nitish
+        shell: /bin/bash
+      become: true
+    - name: Change user password
+      user:
+        name: nitish
+        password: "{{ newpassword | password_hash('sha512') }}"
+      vars:
+        newpassword: "123456"
+      become: true
+    - name: Delete user
+      user:
+        name: nitish
+        state: absent
+      become: true
+    - name: List user
+      shell:
+        cmd: "cut -d: -f1 /etc/passwd"
+    - name: List team
+      shell:
+        cmd: "cut -d: -f1 /etc/group"
+      

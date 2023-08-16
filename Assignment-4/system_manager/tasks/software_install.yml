@@ -1,0 +1,43 @@
+---
+    - name: Install Software on Debian-based Systems
+      apt:
+        name: "{{ app_to_install }}"
+        state: present
+        update_cache: yes  
+      when: ansible_os_family == 'Debian'
+      tags: [install]
+
+    - name: Install Software on RedHat-based Systems
+      yum:
+        name: "{{ app_to_install }}"
+        state: present
+        update_cache: yes  
+      when: ansible_os_family == 'RedHat'
+      tags: [install]
+
+    - name: Uninstall Software on Debian-based Systems
+      apt:
+        name: "{{ app_to_uninstall }}"
+        state: absent
+      when: ansible_os_family == 'Debian'
+      tags: [uninstall]
+
+    - name: Uninstall Software on RedHat-based Systems
+      yum:
+        name: "{{ app_to_uninstall }}"
+        state: absent
+      when: ansible_os_family == 'RedHat'
+      tags: [uninstall]
+
+
+
+
+
+
+
+
+
+
+
+
+

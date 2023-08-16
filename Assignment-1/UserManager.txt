@@ -1,0 +1,44 @@
+1 : Add NinjaTeam (Simulate Group) ex: team1
+
+Ans: ansible web -m group -ba "name=ninja state=present"
+
+
+
+2: Add a User (Simulate) under a team ex: Nitish added to team1 Ensure below constraints are met:
+A user should have read,write, execute access to home directory
+All the users of same team should have read and excute access to home directory of fellow team members.
+
+Ans: ansible web -m user -ba "name=nitish group=ninja state=present"
+     ansible web -m file -ba "path=/home/nitish state=directory owner=nitish group=ninja mode=0750" 
+     
+
+
+3: In home directory of every user there should be 2 shared directories
+	Team: Same team members will have full access
+	Ninja: All ninja's will have full access
+
+Ans:  ansible web -m file -ba "path=/home/nitish/team state=directory owner=nitish group=ninja mode=0770" 
+      ansible web -m file -ba "path=/home/nitish/ninja state=directory owner=nitish group=ninja mode=0777" 
+
+
+
+Additional Features:
+Change user Shell
+Ans: ansible web -m user -ba "name=nitish shell=/bin/bash"
+
+
+Change user password
+Ans: ansible web -m user -ba "name=nitish password={{ newpassword|password_hash('sha512') }}"  --extra-vars "newpassword=123456"
+
+
+Delete user
+Ans: ansible web -m user -ba "name=nitish state=absent"
+
+
+Delete Group
+Ans: ansible web -m group -ba "name=nitish state=absent"
+
+
+List user or Team
+Ans: ansible web -m shell -ba "cut -d: -f1 /etc/group"
+     ansible web -m shell -ba "cut -d: -f1 /etc/passwd"

@@ -1,0 +1,47 @@
+---
+- name: Setup the web server
+  hosts: web
+  become: yes
+  tasks:
+    - name: Installing Java, Maven. Mysql and Tomcat
+      apt:
+        name:
+          - default-jdk
+          - maven
+          - mysql-server
+          - tomcat9
+          - tomcat9-admin
+        update_cache: yes
+        state: present
+    - name: Clone a github repository
+      git:
+        repo: https://github.com/opstree/spring3hibernate
+        dest: /home/ubuntu/git/
+    - name: generating war file
+      shell: mvn package
+      args:
+        chdir: /home/ubuntu/git
+    - name: Add 'admin-gui' role to tomcat-users.xml
+      lineinfile:
+        path: /etc/tomcat9/tomcat-users.xml
+        line: <role rolename="admin-gui"/>
+        insertbefore: </tomcat-users>
+    - name: Add 'manager-gui' role to tomcat-users.xml
+      lineinfile:
+        path: /etc/tomcat9/tomcat-users.xml
+        line: <role rolename="manager-gui"/>
+        insertbefore: </tomcat-users>
+    - name: Add 'tomcat' user with roles to tomcat-users.xml
+      lineinfile:
+        path: /etc/tomcat9/tomcat-users.xml
+        line: <user username="tomcat" password="pass" roles="admin-gui,manager-gui"/>
+        insertbefore: </tomcat-users>
+    - name: deploying war file on tomcat9
+      copy:
+        remote_src: true
+        src: /home/ubuntu/git/target/Spring3HibernateApp.war
+        dest: /var/lib/tomcat9/webapps/Spring3HibernateApp.war
+    - name: restarting service tomcat
+      service:
+        name: tomcat9
+        state: restarted

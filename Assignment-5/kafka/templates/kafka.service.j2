@@ -1,0 +1,22 @@
+# kafka.service.j2
+
+[Unit]
+Description=Apache Kafka Server
+Documentation=http://kafka.apache.org/documentation.html
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target zookeeper.service
+
+[Service]
+Type=simple
+Environment="LOG_DIR={{ kafka_log_dir }}"
+Environment="KAFKA_DATA_DIR={{ kafka_data_dir }}"  # Use the variables
+Environment="KAFKA_PORT={{ kafka_port }}"
+Environment="ZOOKEEPER_CONNECT={{ zookeeper_connect }}"
+Environment="NUM_PARTITIONS={{ num_partitions }}"
+ExecStart={{ kafka_install_dir }}/bin/kafka-server-start.sh {{ kafka_install_dir }}/config/server.properties
+ExecStop={{ kafka_install_dir }}/bin/kafka-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=default.target
+

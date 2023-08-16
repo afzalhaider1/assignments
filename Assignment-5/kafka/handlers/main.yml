@@ -1,0 +1,24 @@
+---
+    - name: Restart Zookeeper
+      service:
+        name: zookeeper
+        state: restarted 
+        
+    - name: Restart Kafka
+      service:
+        name: kafka
+        state: restarted
+        
+    - name: Enable Kafka
+      systemd:
+        name: kafka
+        enabled: yes
+
+    - name: Enable Zookeeper
+      systemd:
+        name: zookeeper
+        enabled: yes
+        
+    - name: Reload Daemon
+      systemd:
+        daemon_reload: yes

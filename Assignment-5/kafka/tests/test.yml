@@ -1,0 +1,5 @@
+---
+- hosts: web
+  become: yes
+  roles:
+    - /home/afzal/Desktop/Assignment/Ansible-Assignments/Assignment-5/kafka
