@@ -1,0 +1,5 @@
+---
+- hosts: jenkins
+  become: yes
+  roles:
+    - /home/afzal/Desktop/Assignment/Jenkins-Assignment/Assignment-1/jenkins
