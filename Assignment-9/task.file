@@ -1,0 +1,6 @@
+#server2,file,create,/opt/file1.txt
+#server2,file,delete,/opt/file1.txt
+#server2,file,modify,/opt/file.txt,hello
+#server2,directory,create,/opt/dir1
+#server2,directory,delete,/opt/dir1
+server2,copy,/tmp/file2.txt,/opt/

@@ -1,0 +1,42 @@
+- Create a folder ninja at the root level of your cloned code
+	git clone https://github.com/afzalhaider1/assignment8.git
+	git branch
+	mkdir ninja
+	
+- Add a file README.md with content "Trying fast forward merge" in  ninja folder
+	echo "Trying fast forward merge" > ninja/README.md
+	
+- Create a branch ninja and move to it
+	git checkout -b ninja
+	
+- Run git status command
+	git status
+	
+- Commit your changes to ninja branch
+	git add ninja/README.md 
+	git commit -m "Add README.md to ninja branch"
+	
+- Merge ninja branch to master branch make sure that a new commit get's created
+	git checkout main
+	git merge ninja
+	
+- Assuming you are in the master branch, modify README.md with content "Changes in master branch", commit the changes in master branch.
+	echo "Changes in master branch" >> ninja/README.md           
+	git add ninja/README.md 
+	git commit -m "Modify README.md in master branch"
+	git status
+	git log
+	
+- Switch to ninja branch, modify README.md with content "Changes in ninja branch", commit the changes in ninja branch.
+	git checkout ninja 
+	echo "Changes in ninja branch" >> ninja/README.md
+	git add ninja/README.md 
+	git commit -m "Modify README.md in ninja branch"
+	git log --oneline
+	
+- Merge the ninja branch to the master branch in such a fashion that a merge conflict is generated and resolve it using the ours and theirs concept so that the changes of the ninja branch overrides changes in master branch.	
+	git checkout main
+	git merge ninja
+	git checkout --ours ninja/README.md
+	git add ninja/README.md 
+	git commit -m "Merge 'ninja' branch with conflict resolution"

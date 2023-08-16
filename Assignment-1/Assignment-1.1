@@ -1,0 +1,36 @@
+mkdir linux
+mkdir linux/Assignment-01
+mkdir /tmp/dir1
+mkdir /tmp/dir1/dir2/dir3
+rmdir /tmp/dir1/dir2/dir3/
+touch /tmp/afzal
+cat >> /tmp/afzal 
+This is my first line
+cat >> /tmp/afzal 
+this is a additional content
+echo "haider is my last name" > /tmp/haider
+echo "this is line at the  beginning" > firstline
+cat firstline >> /tmp/haider
+mv firstline /tmp/haider
+echo line3 >> /tmp/haider 
+echo line4 >> /tmp/haider 
+echo line5 >> /tmp/haider 
+echo line6 >> /tmp/haider 
+echo line7 >> /tmp/haider
+echo line8 >> /tmp/haider 
+echo line9 >> /tmp/haider 
+echo line10 >> /tmp/haider  
+head -n 5 /tmp/haider
+tail -n 2 /tmp/haider 
+tail -n 5 /tmp/haider | head -n 1
+tail -n 8 /tmp/haider | head -n 6
+ls -a /tmp/
+ls -p | grep -v /
+ls -d */
+cp haider /tmp/dir1/dir2/haider
+ cp haider /tmp/dir1/dir2/haider.copy
+ mv /tmp/afzal /tmp/afzal1
+  mv haider /tmp/dir1/
+  echo "" > /tmp/dir1/dir2/haider.copy
+  rm /tmp/dir1/dir2/haider.copy
+  

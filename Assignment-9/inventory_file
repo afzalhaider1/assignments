@@ -1,0 +1,9 @@
+server1,neha,localhost
+#server2,aayush,localhost
+#server1,ubuntu,10.0.0.1,~/server1.pem
+#server2,ubuntu,10.0.0.6,~/server2.pem
+#server3,ubuntu,10.0.0.7,~/server2.pem
+#webserver1,ubuntu,10.0.0.2,~/web.pem
+#webserver2,ubuntu,10.0.0.3,~/web.pem
+#appserver1,ubuntu,10.0.0.4,~/app.pem
+#appserver2,ubuntu,10.0.0.5,~/app.pem

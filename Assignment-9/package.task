@@ -1,0 +1,5 @@
+#server1,install,nginx
+server1,install,tree
+#server2,install,nginx
+#server2,uninstall,nginx
+#server2,update

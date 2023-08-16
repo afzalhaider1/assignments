@@ -1,0 +1,5 @@
+#server1,group,create,qa
+#server1,group,create,devops
+server1,group,user,touseef,qa
+#server1,group,user,nitish,devops
+#server1,group,delete,qa
